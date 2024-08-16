@@ -11,6 +11,6 @@ const startWord=() => {
         document.getElementById("myword").value = ""
     } else{
         document.getElementById("result").innerText = "땡!"
-        document.getElementById("myword")=""
+        document.getElementById("myword").innerText=""
     }
 }
