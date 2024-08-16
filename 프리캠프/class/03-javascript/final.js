@@ -128,6 +128,6 @@ function signup(){
     }
 
     if(isValid === true){
-        alert("코드캠프 가입을 축하합니다.")
+        alert("회원가입을 축하합니다.")
     }
 }

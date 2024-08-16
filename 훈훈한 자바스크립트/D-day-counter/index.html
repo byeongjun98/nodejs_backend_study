@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <title>D-Day</title>
+    <script>
+        const dataFormMaker = () =>{
+            const getYear = document.querySelector('#yearInput').value
+            const getMonth = document.querySelector('#monthInput').value
+            const getDate = document.querySelector('#dateInput').value
+            //const dateFormat = getYear + '-' + getMonth + '-' + getDate
+            const dateFormat = `${getYear}-${getMonth}-${getDate}`
+            console.log(dateFormat)
+            alert(getYear + '년 ' + getMonth + '월 '+ getDate+ '일 입니다')
+            return dateFormat
+        }
+
+        const counterMaker = () =>{
+            const targetDateInput = dataFormMaker()
+            const nowDate = new Date()
+            const targetDate = new Date(targetDateInput).setHours(0,0,0,0)
+            const remaining = (targetDate - nowDate) / 1000
+
+            const remainingDate = Math.floor(remaining / 3600 / 24)
+            const remainingHours = Math.floor(remaining/ 3600) % 24
+            const remainingMin = Math.floor(remaining / 60) % 60
+            const remainingSec = Math.floor(remaining) % 60
+            console.log(nowDate)
+            console.log(targetDate)
+            console.log(remaining)
+            console.log(remainingDate)
+            console.log(remainingHours)
+            console.log(remainingMin)
+            console.log(remainingSec)
+
+        }
+    </script>
+</head>
+<body>
+    <div id="nowDate" class="output_now" ></div>
+    <span>반갑습니다</span>
+    <br>
+    <input placeholder="년도를 입력하세요" id="yearInput" class="target-input"/>
+    <input placeholder="월을 입력하세요" id="monthInput" class="target-input"/>
+    <input placeholder="날짜를 입력하세요" id="dateInput" class="target-input"/>
+    <button onclick="counterMaker()">버튼</button>
+</body>
+</html>
