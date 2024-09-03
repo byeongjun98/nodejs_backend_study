@@ -34,11 +34,6 @@ const counterMaker = () => {
         remainingSec: Math.floor(remaining) % 60
     }
 
-    // const days = document.getElementById('days')
-    // const hours = document.getElementById('hours')
-    // const min = document.getElementById('min')
-    // const sec = document.getElementById('sec')
-
     const documentObj = {
         days: document.getElementById('days'),
         hours: document.getElementById('hours'),
@@ -46,10 +41,21 @@ const counterMaker = () => {
         sec: document.getElementById('sec')
     }
 
-    documentObj.textContent = remainingObj.remainingDate
-    documentObj.hours.textContent = remainingObj.remainingHours
-    documentObj.min.textContent = remainingObj.remainingMin
-    documentObj.sec.textContent = remainingObj.remainingSec
+    const timeKeys = Object.keys(remainingObj)
+    const docKeys = Object.keys(documentObj)
+
+    for (let i = 0; i < timeKeys.length; i++) {
+        documentObj[docKeys[i]].textContent = remainingObj[timeKeys[i]]
+    }
+
+    for (let key in documentObj) {
+
+    }
+
+    // documentObj.days.textContent = remainingObj.remainingDate
+    // documentObj.hours.textContent = remainingObj.remainingHours
+    // documentObj.min.textContent = remainingObj.remainingMin
+    // documentObj.sec.textContent = remainingObj.remainingSec
 
     // console.log(remainingDate, remainingHours, remainingMin, remainingSec)
 }
