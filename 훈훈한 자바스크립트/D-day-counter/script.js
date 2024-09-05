@@ -2,6 +2,7 @@ const messageContainer = document.querySelector('#d-day-message')
 const dDayContainer = document.querySelector('#d-day-container')
 dDayContainer.style.display = 'none'
 messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
+const intervalIdArr = []
 
 const dataFormMaker = () => {
     const getYear = document.querySelector('#yearInput').value
@@ -21,11 +22,13 @@ const counterMaker = () => {
         dDayContainer.style.display = 'none'
         messageContainer.innerHTML = '<h3>타이머가 종료되었습니다</h3>'
         messageContainer.style.display = 'flex'
+        setClearInterval()
         return;
     } else if (isNaN(remaining)) {
         dDayContainer.style.display = 'none'
         messageContainer.innerHTML = '<h3>유효한 시간대가 아닙니다</h3>'
         messageContainer.style.display = 'flex'
+        setClearInterval()
         return
     }
 
@@ -56,7 +59,7 @@ const counterMaker = () => {
     //     days: document.getElementById('days'),
     //     hours: document.getElementById('hours'),
     //     min: document.getElementById('min'),
-    // //     sec: document.getElementById('sec')
+    //     sec: document.getElementById('sec')
     // }
     // for in 문
     // let i = 0;
@@ -69,15 +72,26 @@ const counterMaker = () => {
     // documentObj.hours.textContent = remainingObj.remainingHours
     // documentObj.min.textContent = remainingObj.remainingMin
     // documentObj.sec.textContent = remainingObj.remainingSec
-
 };
 
 const starter = function () {
     dDayContainer.style.display = 'flex'
     messageContainer.style.display = 'none'
-    for (let i = 0; i < 100; i++) {
-        setTimeout(() => {
-            counterMaker()
-        }, 1000 * i)
-    }
+    counterMaker()
+    const intervalId = setInterval(counterMaker, 1000)
+    intervalIdArr.push(intervalId)
+    // for (let i = 0; i < 100; i++) {
+    //     setTimeout(() => {
+    //         counterMaker()
+    //     }, 1000 * i)
+    // }
 };
+
+const setClearInterval = () => {
+    dDayContainer.style.display = 'none'
+    messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
+    messageContainer.style.display = 'flex'
+    for (let i = 0; i < intervalIdArr.length; i++) {
+        clearInterval(intervalIdArr[i])
+    }
+}
