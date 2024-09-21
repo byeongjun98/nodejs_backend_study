@@ -13,10 +13,9 @@ const dataFormMaker = () => {
     return dateFormat;
 }
 
-const counterMaker = () => {
-    const targetDateInput = dataFormMaker()
+const counterMaker = (data) => {
     const nowDate = new Date()
-    const targetDate = new Date(targetDateInput).setHours(0, 0, 0, 0)
+    const targetDate = new Date(data).setHours(0, 0, 0, 0)
     const remaining = (targetDate - nowDate) / 1000
     if (remaining <= 0) {
         dDayContainer.style.display = 'none'
@@ -42,56 +41,42 @@ const counterMaker = () => {
     const documentArr = ['days', 'hours', 'min', 'sec']
     const timeKeys = Object.keys(remainingObj)
 
+
+    const format = function (time) {
+        if (time < 10) {
+            return '0' + time
+        } else {
+            return time
+        }
+    }
     // for of문
     let i = 0;
     for (let tag of documentArr) {
-        document.getElementById(tag).textContent = remainingObj[timeKeys[i]];
+        const remainingTime = format(remainingObj[timeKeys[i]])
+        document.getElementById(tag).textContent = remainingTime;
         i++;
     }
-
-    // const docKeys = Object.keys(documentObj)
-    // for 문
-    // for (let i = 0; i < timeKeys.length; i++) {
-    //     documentObj[docKeys[i]].textContent = remainingObj[timeKeys[i]]
-    // }
-
-    // const documentObj = {
-    //     days: document.getElementById('days'),
-    //     hours: document.getElementById('hours'),
-    //     min: document.getElementById('min'),
-    //     sec: document.getElementById('sec')
-    // }
-    // for in 문
-    // let i = 0;
-    // for (let key in documentObj) {
-    //     documentObj[key].textContent = remainingObj[timeKeys[i]]
-    //     i++;
-    // }
-
-    // documentObj.days.textContent = remainingObj.remainingDate
-    // documentObj.hours.textContent = remainingObj.remainingHours
-    // documentObj.min.textContent = remainingObj.remainingMin
-    // documentObj.sec.textContent = remainingObj.remainingSec
 };
 
 const starter = function () {
+    const targetDateInput = dataFormMaker()
     dDayContainer.style.display = 'flex'
     messageContainer.style.display = 'none'
-    counterMaker()
-    const intervalId = setInterval(counterMaker, 1000)
+    setClearInterval()
+    counterMaker(targetDateInput)
+    const intervalId = setInterval(() => counterMaker(targetDateInput), 1000)
     intervalIdArr.push(intervalId)
-    // for (let i = 0; i < 100; i++) {
-    //     setTimeout(() => {
-    //         counterMaker()
-    //     }, 1000 * i)
-    // }
 };
 
 const setClearInterval = () => {
-    dDayContainer.style.display = 'none'
-    messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
-    messageContainer.style.display = 'flex'
     for (let i = 0; i < intervalIdArr.length; i++) {
         clearInterval(intervalIdArr[i])
     }
+}
+
+const resetTimer = function () {
+    dDayContainer.style.display = 'none'
+    messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
+    messageContainer.style.display = 'flex'
+    setClearInterval()
 }
