@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+#d-day-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.d-day-child-container {
+    text-align: center;
+    margin: 0 1.5rem;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.d-day-child-container span {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #0078d7;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin: 0.5rem;
+    background-color: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #005bb5;
+}
+
+.target-selector {
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.target-input {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0.5rem;
+    border: 2px solid #0078d7;
+    border-radius: 5px;
+    margin: 0 0.5rem;
+    width: 80px;
+}
+
+#d-day-message {
+    font-size: 1.5rem;
+    color: #ff5c5c;
+    margin-top: 1rem;
+}
+
+.output_now {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.d-day-child-container span {
+    animation: fade-in 0.5s ease-in-out;
+}

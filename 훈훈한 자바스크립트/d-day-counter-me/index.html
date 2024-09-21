@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>D-Day 타이머</title>
+    <link href="style.css" rel="stylesheet">
+    <script defer src="index.js"></script>
+</head>
+<body>
+<header>
+    <h1>D-Day 타이머</h1>
+</header>
+
+<main>
+    <section id="d-day-container">
+        <div class="d-day-child-container">
+            <span id="days">0</span>
+            <span>일</span>
+        </div>
+        <div class="d-day-child-container">
+            <span id="hours">0</span>
+            <span>시간</span>
+        </div>
+        <div class="d-day-child-container">
+            <span id="min">0</span>
+            <span>분</span>
+        </div>
+        <div class="d-day-child-container">
+            <span id="sec">0</span>
+            <span>초</span>
+        </div>
+    </section>
+
+    <section id="d-day-message"></section>
+
+    <div class="output_now" id="nowDate"></div>
+
+    <section class="target-selector">
+        <label for="yearInput">연도</label>
+        <input class="target-input" id="yearInput" placeholder="YYYY" size="7"/> -
+
+        <label for="monthInput">월</label>
+        <input class="target-input" id="monthInput" placeholder="MM" size="7"/> -
+
+        <label for="dateInput">일</label>
+        <input class="target-input" id="dateInput" placeholder="DD" size="7"/>
+    </section>
+
+    <section class="button-group">
+        <button class="btn" onclick="startTimer()">타이머 시작</button>
+        <button class="btn" onclick="resetTimer()">타이머 초기화</button>
+    </section>
+</main>
+</body>
+</html>
