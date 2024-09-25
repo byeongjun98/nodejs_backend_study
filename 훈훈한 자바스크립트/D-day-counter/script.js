@@ -1,19 +1,21 @@
 const messageContainer = document.querySelector('#d-day-message')
 const dDayContainer = document.querySelector('#d-day-container')
 dDayContainer.style.display = 'none'
-messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
 const intervalIdArr = []
+const savedDate = localStorage.getItem('saved-date')
 
 const dataFormMaker = () => {
     const getYear = document.querySelector('#yearInput').value
     const getMonth = document.querySelector('#monthInput').value
     const getDate = document.querySelector('#dateInput').value
-
     const dateFormat = `${getYear}-${getMonth}-${getDate}`
     return dateFormat;
 }
 
 const counterMaker = (data) => {
+    if (data !== savedDate) {
+        localStorage.setItem('saved-date', data)
+    }
     const nowDate = new Date()
     const targetDate = new Date(data).setHours(0, 0, 0, 0)
     const remaining = (targetDate - nowDate) / 1000
@@ -58,8 +60,10 @@ const counterMaker = (data) => {
     }
 };
 
-const starter = function () {
-    const targetDateInput = dataFormMaker()
+const starter = function (targetDateInput) {
+    if (!targetDateInput) {
+        targetDateInput = dataFormMaker()
+    }
     dDayContainer.style.display = 'flex'
     messageContainer.style.display = 'none'
     setClearInterval()
@@ -69,6 +73,7 @@ const starter = function () {
 };
 
 const setClearInterval = () => {
+    localStorage.removeItem('saved-date')
     for (let i = 0; i < intervalIdArr.length; i++) {
         clearInterval(intervalIdArr[i])
     }
@@ -79,4 +84,10 @@ const resetTimer = function () {
     messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
     messageContainer.style.display = 'flex'
     setClearInterval()
+}
+
+if (savedDate) {
+    starter(savedDate)
+} else {
+    messageContainer.innerHTML = '<h3>D-Day를 입력해주세요</h3>'
 }
